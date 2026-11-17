@@ -1,43 +1,96 @@
 :root{
-  --bg:#EEF0F5; --ink:#14182B; --muted:#5A607A; --line:#D3D7E2;
-  --accent:#3446D6; --accent-ink:#FFFFFF;
+  --bg:#F3F6FC; --ink:#0D1230; --muted:#56608A; --line:#D5DCEE;
+  --accent:#3B5BFF; --panel:#0D1230; --panel-ink:#F3F6FC;
   --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
-  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --pad:clamp(1.25rem,5vw,4rem);
 }
 @media (prefers-color-scheme:dark){
-  :root{--bg:#121522;--ink:#E9EBF5;--muted:#9AA1BC;--line:#2A2F45;--accent:#8E9BFF;--accent-ink:#121522}
+  :root{--bg:#0A0E22; --ink:#EEF1FF; --muted:#9AA4D1; --line:#222A4D; --accent:#8AA0FF; --panel:#EEF1FF; --panel-ink:#0A0E22}
 }
 
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.6}
-main{max-width:44rem;margin:0 auto;padding:4rem 1.25rem 3rem}
-
-h1{font-family:var(--display);font-weight:700;font-size:clamp(3.2rem,13vw,6.5rem);line-height:.92;letter-spacing:-.035em;margin:0 0 1.5rem}
-.lede{font-size:1.25rem;max-width:30rem;margin:0 0 2rem;color:var(--muted)}
-
-.links{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:3rem}
-.btn{font-family:var(--display);font-weight:500;font-size:1rem;text-decoration:none;padding:.7rem 1.25rem;border-radius:999px;border:1.5px solid var(--ink);color:var(--ink)}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.btn:hover{opacity:.85}
-
-.jump{display:flex;gap:1.25rem;border-bottom:1.5px solid var(--ink);padding-bottom:.75rem;margin-bottom:1rem}
-.jump a{font-family:var(--display);font-weight:500;color:var(--muted);text-decoration:none}
-.jump a:hover{color:var(--ink)}
-
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--display);font-size:1.0625rem;line-height:1.55;overflow-x:hidden}
+a{color:inherit}
 a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 
-section{scroll-margin-top:1.5rem;margin-top:3rem}
-.section{font-family:var(--display);font-weight:700;font-size:1rem;color:var(--muted);margin:0}
+/* Paper plane that flies as you scroll */
+.plane{position:fixed;top:0;left:0;width:clamp(3.5rem,8vw,6rem);height:auto;z-index:0;pointer-events:none;
+  transform:translate(72vw,14vh) rotate(12deg)}
+.plane .body{fill:var(--accent)}
+.plane .wing{fill:var(--accent);opacity:.45}
 
-.row{display:grid;grid-template-columns:1fr auto;gap:.25rem 1.5rem;padding:1.4rem 0;border-bottom:1px solid var(--line)}
-.row h3{font-family:var(--display);font-weight:700;font-size:1.5rem;line-height:1.15;letter-spacing:-.01em;margin:0}
-.meta{color:var(--muted);font-size:.95rem;text-align:right;white-space:nowrap;padding-top:.3rem}
-.note{grid-column:1 / -1;margin:.25rem 0 0;max-width:34rem}
-.row a{grid-column:1 / -1;justify-self:start;font-family:var(--display);font-weight:500;font-size:.95rem;color:var(--accent);margin-top:.35rem}
+header.top,main,footer{position:relative;z-index:1}
 
-footer{margin-top:4rem;color:var(--muted);font-size:.95rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+.top{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.25rem var(--pad)}
+.brand{font-weight:800;text-decoration:none;letter-spacing:-.01em}
+.top nav{display:flex;gap:1.5rem}
+.top nav a{text-decoration:none;color:var(--muted);font-weight:600}
+.top nav a:hover{color:var(--ink)}
 
-@media (max-width:30rem){.meta{white-space:normal}}
+/* Hero */
+.hero{min-height:78vh;display:flex;flex-direction:column;justify-content:center;padding:2rem var(--pad)}
+h1{font-weight:800;font-size:clamp(3.4rem,13.5vw,12rem);line-height:.88;letter-spacing:-.045em;margin:0}
+.tag{font-size:clamp(1.1rem,2.4vw,1.6rem);font-weight:600;margin:2rem 0 0;color:var(--muted)}
+.tag i{font-style:normal;color:var(--accent);margin:0 .35em}
+
+/* Ticker */
+.marquee{overflow:hidden;border-block:1.5px solid var(--ink);padding:.9rem 0;background:var(--bg)}
+.track{display:flex;width:max-content;animation:ticker 28s linear infinite}
+.track span{white-space:pre;font-weight:800;font-size:clamp(1.4rem,3.4vw,2.4rem);letter-spacing:-.02em;padding-right:.5em}
+@keyframes ticker{to{transform:translateX(-50%)}}
+
+/* Manifesto */
+.manifesto{padding:clamp(5rem,14vw,10rem) var(--pad)}
+.line{font-family:var(--serif);font-size:clamp(3rem,11vw,9.5rem);line-height:.98;letter-spacing:-.02em;margin:0}
+.line em{color:var(--accent)}
+.sub{font-size:clamp(1.1rem,2vw,1.35rem);max-width:30rem;color:var(--muted);margin:3rem 0 0}
+
+/* Pillars */
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:0;margin:0 var(--pad);border-top:1.5px solid var(--ink)}
+.pillar{padding:2rem 1.5rem 3rem 0}
+.pillar h2{font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;margin:0 0 .75rem}
+.pillar p{margin:0;color:var(--muted);max-width:18rem}
+
+/* Shelf */
+.shelf{padding:clamp(5rem,12vw,9rem) var(--pad) 2rem}
+.shelf-title{font-family:var(--serif);font-weight:400;font-size:clamp(2.5rem,7vw,5.5rem);letter-spacing:-.02em;line-height:1;margin:0 0 3rem}
+.shelf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:2.5rem}
+.col h3{font-size:1.1rem;font-weight:800;margin:0 0 .5rem;padding-bottom:.75rem;border-bottom:1.5px solid var(--ink)}
+.col ul{list-style:none;margin:0;padding:0}
+.col li{display:flex;flex-direction:column;padding:1rem 0;border-bottom:1px solid var(--line)}
+.col li b{font-weight:600;font-size:1.2rem;line-height:1.25}
+.col li span{color:var(--muted);font-size:.95rem}
+
+/* Call to action */
+.cta{margin:clamp(4rem,10vw,8rem) var(--pad);padding:clamp(2.5rem,7vw,6rem);background:var(--panel);color:var(--panel-ink);border-radius:2rem}
+.cta h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,8vw,6.5rem);line-height:1;letter-spacing:-.02em;margin:0 0 2.5rem;max-width:12ch}
+.links{display:flex;flex-wrap:wrap;gap:.75rem}
+.btn{display:inline-block;text-decoration:none;font-weight:600;padding:.85rem 1.5rem;border-radius:999px;border:1.5px solid currentColor}
+.btn.solid{background:var(--panel-ink);color:var(--panel);border-color:var(--panel-ink)}
+.btn:hover{opacity:.85}
+
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;padding:1.5rem var(--pad) 2.5rem;color:var(--muted);font-size:.95rem}
+footer a{text-decoration:none}
+
+/* Scroll-driven animation (CSS only). Browsers without support simply show everything. */
+@supports (animation-timeline: view()){
+  .reveal{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+  .line{animation:ink linear both;animation-timeline:view();animation-range:entry 10% cover 45%}
+  .plane{animation:fly linear both;animation-timeline:scroll(root)}
+}
+@keyframes rise{from{opacity:0;transform:translateY(3rem)}to{opacity:1;transform:none}}
+@keyframes ink{from{opacity:.12;transform:translateX(-2rem)}to{opacity:1;transform:none}}
+@keyframes fly{
+  0%{transform:translate(72vw,14vh) rotate(12deg)}
+  35%{transform:translate(12vw,38vh) rotate(-14deg)}
+  70%{transform:translate(78vw,62vh) rotate(16deg)}
+  100%{transform:translate(40vw,86vh) rotate(-6deg)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .track,.reveal,.line,.plane{animation:none}
+}
+@media (max-width:40rem){.top nav{gap:1rem}.cta{border-radius:1.25rem}}
