@@ -5,12 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Paper Plane Studio – Ideas, Stories, Impact</title>
 <meta name="description" content="Movies, shows and books that carry a story worth passing on. Find us on Instagram and YouTube.">
+<script>document.documentElement.className="js"</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<div class="progress" aria-hidden="true"></div>
 
 <svg class="plane" viewBox="0 0 64 64" aria-hidden="true">
   <path class="wing" d="M2 30 62 2 22 36Z"/>
@@ -19,20 +22,26 @@
 
 <header class="top">
   <a class="brand" href="#top">The Paper Plane Studio</a>
-  <nav>
+  <nav aria-label="Main">
+    <a href="#shelf">Shelf</a>
     <a href="https://www.youtube.com/@thepaperplanestudio">YouTube</a>
     <a href="https://www.instagram.com/thepaperplanestudio/">Instagram</a>
+    <button class="theme" type="button" aria-label="Switch colour theme">Dark</button>
   </nav>
 </header>
 
 <main id="top">
   <section class="hero">
-    <h1>The Paper<br>Plane Studio</h1>
+    <h1><span><span>The Paper</span></span><span><span>Plane Studio</span></span></h1>
     <p class="tag">Ideas <i>✦</i> Stories <i>✦</i> Impact</p>
   </section>
 
   <div class="marquee" aria-hidden="true">
     <div class="track">
+      <span>Ideas ✦ Stories ✦ Impact ✦ Ideas ✦ Stories ✦ Impact ✦ </span>
+      <span>Ideas ✦ Stories ✦ Impact ✦ Ideas ✦ Stories ✦ Impact ✦ </span>
+      <span>Ideas ✦ Stories ✦ Impact ✦ Ideas ✦ Stories ✦ Impact ✦ </span>
+      <span>Ideas ✦ Stories ✦ Impact ✦ Ideas ✦ Stories ✦ Impact ✦ </span>
       <span>Ideas ✦ Stories ✦ Impact ✦ Ideas ✦ Stories ✦ Impact ✦ </span>
       <span>Ideas ✦ Stories ✦ Impact ✦ Ideas ✦ Stories ✦ Impact ✦ </span>
     </div>
@@ -42,7 +51,7 @@
     <p class="line">Universe is made</p>
     <p class="line">of <em>Stories,</em></p>
     <p class="line">not atoms.</p>
-    <p class="sub reveal">We share the movies, shows and books that carry a story worth passing on, on Instagram and YouTube.</p>
+    <p class="sub reveal">We share the movies, shows and books that carry a story worth passing on!</p>
   </section>
 
   <section class="pillars">
@@ -60,34 +69,25 @@
     </article>
   </section>
 
-  <section class="shelf">
+  <section class="shelf" id="shelf">
     <h2 class="shelf-title reveal">On our shelf</h2>
-    <div class="shelf-grid">
-      <div class="col reveal">
-        <h3>Movies</h3>
-        <ul>
-          <li><b>Past Lives</b><span>Celine Song</span></li>
-          <li><b>Perfect Days</b><span>Wim Wenders</span></li>
-          <li><b>Aftersun</b><span>Charlotte Wells</span></li>
-        </ul>
-      </div>
-      <div class="col reveal">
-        <h3>Shows</h3>
-        <ul>
-          <li><b>Fleabag</b><span>BBC</span></li>
-          <li><b>Slow Horses</b><span>Apple TV+</span></li>
-          <li><b>Shōgun</b><span>FX</span></li>
-        </ul>
-      </div>
-      <div class="col reveal">
-        <h3>Books</h3>
-        <ul>
-          <li><b>Piranesi</b><span>Susanna Clarke</span></li>
-          <li><b>Klara and the Sun</b><span>Kazuo Ishiguro</span></li>
-          <li><b>Tomorrow, and Tomorrow, and Tomorrow</b><span>Gabrielle Zevin</span></li>
-        </ul>
-      </div>
+    <div class="tabs reveal" role="group" aria-label="Filter the shelf">
+      <button type="button" aria-pressed="true" data-f="All">All</button>
+      <button type="button" aria-pressed="false" data-f="Movies">Movies</button>
+      <button type="button" aria-pressed="false" data-f="Shows">Shows</button>
+      <button type="button" aria-pressed="false" data-f="Books">Books</button>
     </div>
+    <ul class="shelf-list">
+      <li class="reveal" data-type="Movies"><span class="kind">Movie</span><b>Past Lives</b><span class="by">Celine Song</span></li>
+      <li class="reveal" data-type="Books"><span class="kind">Book</span><b>Piranesi</b><span class="by">Susanna Clarke</span></li>
+      <li class="reveal" data-type="Shows"><span class="kind">Show</span><b>Fleabag</b><span class="by">BBC</span></li>
+      <li class="reveal" data-type="Movies"><span class="kind">Movie</span><b>Perfect Days</b><span class="by">Wim Wenders</span></li>
+      <li class="reveal" data-type="Books"><span class="kind">Book</span><b>Klara and the Sun</b><span class="by">Kazuo Ishiguro</span></li>
+      <li class="reveal" data-type="Shows"><span class="kind">Show</span><b>Slow Horses</b><span class="by">Apple TV+</span></li>
+      <li class="reveal" data-type="Movies"><span class="kind">Movie</span><b>Aftersun</b><span class="by">Charlotte Wells</span></li>
+      <li class="reveal" data-type="Books"><span class="kind">Book</span><b>Tomorrow, and Tomorrow, and Tomorrow</b><span class="by">Gabrielle Zevin</span></li>
+      <li class="reveal" data-type="Shows"><span class="kind">Show</span><b>Shōgun</b><span class="by">FX</span></li>
+    </ul>
   </section>
 
   <section class="cta reveal">
@@ -104,5 +104,6 @@
   <a href="https://www.instagram.com/thepaperplanestudio/">@thepaperplanestudio</a>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>
