@@ -1,0 +1,43 @@
+:root{
+  --bg:#EEF0F5; --ink:#14182B; --muted:#5A607A; --line:#D3D7E2;
+  --accent:#3446D6; --accent-ink:#FFFFFF;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#121522;--ink:#E9EBF5;--muted:#9AA1BC;--line:#2A2F45;--accent:#8E9BFF;--accent-ink:#121522}
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.6}
+main{max-width:44rem;margin:0 auto;padding:4rem 1.25rem 3rem}
+
+h1{font-family:var(--display);font-weight:700;font-size:clamp(3.2rem,13vw,6.5rem);line-height:.92;letter-spacing:-.035em;margin:0 0 1.5rem}
+.lede{font-size:1.25rem;max-width:30rem;margin:0 0 2rem;color:var(--muted)}
+
+.links{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:3rem}
+.btn{font-family:var(--display);font-weight:500;font-size:1rem;text-decoration:none;padding:.7rem 1.25rem;border-radius:999px;border:1.5px solid var(--ink);color:var(--ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn:hover{opacity:.85}
+
+.jump{display:flex;gap:1.25rem;border-bottom:1.5px solid var(--ink);padding-bottom:.75rem;margin-bottom:1rem}
+.jump a{font-family:var(--display);font-weight:500;color:var(--muted);text-decoration:none}
+.jump a:hover{color:var(--ink)}
+
+a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+section{scroll-margin-top:1.5rem;margin-top:3rem}
+.section{font-family:var(--display);font-weight:700;font-size:1rem;color:var(--muted);margin:0}
+
+.row{display:grid;grid-template-columns:1fr auto;gap:.25rem 1.5rem;padding:1.4rem 0;border-bottom:1px solid var(--line)}
+.row h3{font-family:var(--display);font-weight:700;font-size:1.5rem;line-height:1.15;letter-spacing:-.01em;margin:0}
+.meta{color:var(--muted);font-size:.95rem;text-align:right;white-space:nowrap;padding-top:.3rem}
+.note{grid-column:1 / -1;margin:.25rem 0 0;max-width:34rem}
+.row a{grid-column:1 / -1;justify-self:start;font-family:var(--display);font-weight:500;font-size:.95rem;color:var(--accent);margin-top:.35rem}
+
+footer{margin-top:4rem;color:var(--muted);font-size:.95rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+
+@media (max-width:30rem){.meta{white-space:normal}}
